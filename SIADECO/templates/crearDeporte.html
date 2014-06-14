@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block opciones %}
+	 
+{% endblock %}
+{% block contenido %}
+	<form action="crearDeporte" method="POST">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<input type="submit" value="Crear" class="form-control"/>
+	</form>
+{% endblock %}

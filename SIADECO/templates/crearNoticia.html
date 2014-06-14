@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block opciones %}
+	<a href="/crearEntrenador" class="btn btn-default"><i class="glyphicon glyphicon-plus-sign"></i> Crear Entrenador</a>
+	<a href="/crearAdministrador" class="btn btn-default"><i class="glyphicon glyphicon-plus-sign"></i> Crear Administrador</a>
+{% endblock %}
+{% block contenido %}
+	<form action="/crearNoticia" method="POST">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<input type="submit" value="Crear" class="form-control"/>
+	</form>
+{% endblock %}

@@ -1,0 +1,19 @@
+OnLive:
+	user: jolberto_63@hotmail.com
+	pass: laquesemedelagana
+GameNow:
+	user: jolberto_63@hotmail.com
+	pass: laquesemedelagana1
+CoreOnline:
+	user: jolberto_63@hotmail.com
+	pass: laquesemedelagana
+Agilefant:
+	user: poindolak@hotmail.com
+	pass: g28tRf71
+
+openshift:
+	mysql:
+		 Root User: admin8T8ZB4s
+		 Root Password: kz_JR-p-rhLg
+		 Database Name: django
+		 Connection URL: mysql://$OPENSHIFT_MYSQL_DB_HOST:$OPENSHIFT_MYSQL_DB_PORT/

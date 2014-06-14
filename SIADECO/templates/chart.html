@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block head %}
+	 {% load chartit %}
+    {{ chart|load_charts:"chart" }}
+{% endblock %}
+{% block contenido %}
+	<div id="chart"></div>
+{% endblock %}

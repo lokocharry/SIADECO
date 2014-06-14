@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block opciones %}
+	 <button type="button"><i class="glyphicon glyphicon-plus-sign"></i><a href="/crearEPS"> Crear EPS</a></button>
+	 <button type="button"><i class="glyphicon glyphicon-plus-sign"></i><a href="/crearModalidad"> Crear Modalidad</a></button>
+{% endblock %}
+{% block contenido %}
+	<form action="{{ accion }}" method="POST">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<input type="submit" value="Crear" class="btn btn-primary"/>
+	</form>
+{% endblock %}

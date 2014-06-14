@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block opciones %}
+	 <button type="button"><i class="glyphicon glyphicon-plus-sign"></i><a href="/crearDeporte"> Crear Deporte</a></button>
+	 <button type="button"><i class="glyphicon glyphicon-plus-sign"></i><a href="/crearDeportista"> Crear Deportista</a></button>
+	 <button type="button"><i class="glyphicon glyphicon-plus-sign"></i><a href="/crearModalidad"> Crear Modalidad</a></button>
+{% endblock %}
+{% block contenido %}
+	<form action="crearModalidad" method="POST">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<input type="submit" value="Crear" class="form-control"/>
+	</form>
+{% endblock %}

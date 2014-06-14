@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+	<div class="bs-example">
+    	<ul class="nav nav-tabs">
+		{% for l in list %}
+			<li ><a data-toggle="tab" href="#{{l.id}}">{{ l.nombre_noticia }}</a></li>
+		{% endfor %}
+		</ul>
+		<div class="tab-content">
+		{% for l in list %}
+			<div id="{{l.id}}" class="tab-pane fade in active">
+				<h3>{{l.nombre_noticia}}</h3>
+				<p>{{l.descripcion_noticia}}</p>
+			</div>
+		{% endfor %}
+		</div>
+    </div>
+{% endblock %}

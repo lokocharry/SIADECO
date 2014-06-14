@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block head %}
+{% endblock %}
+{% block opciones %}
+	 
+{% endblock %}
+{% block contenido %}
+  <div id="chart">
+    {{ chart.as_html }}
+  </div>
+	{% for l in list %}
+		<div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">{{ l.lugar_evento }}</h3>
+            </div>
+            <div class="panel-body">
+              Logro: {{ l.logro }}
+              <br>
+              Deporte: {{ l.deporte }}
+              <br>
+              Resultado: {{ l.resultado }}
+            </div>
+        </div>
+	{% endfor %}
+{% endblock %}

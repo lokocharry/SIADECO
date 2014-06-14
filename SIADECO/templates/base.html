@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	{% block BSCT_CSS %} {% endblock %}
+	<meta charset="iso-8859-1">
+	<meta name="description" content="SIADECO">
+	<meta name="keywords" content="HTML5, CSS3, JavaScript">
+	<meta name="viweport" content="width=device-width, initial-scale=1.0">
+	<title>SIADECO</title>
+	<link href="{{STATIC_URL}}css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link href="{{STATIC_URL}}css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
+  <link href="{{STATIC_URL}}css/datepicker.css" rel="stylesheet" media="screen">
+	<script type="text/javascript" src="{{STATIC_URL}}js/jquery-1.10.2.min.js"></script>
+  <script type="text/javascript" src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="{{STATIC_URL}}js/highcharts.js"></script>
+  <script type="text/javascript" src="{{STATIC_URL}}js/exporting.js"></script>
+  <script type="text/javascript" src="{{STATIC_URL}}js/bootstrap-datepicker.js"></script>
+	{% block links %} {% endblock %}
+	{% block scripts %} 
+		<script type="text/javascript">
+        $(function() {
+      	$("#formu").find('input[id], textarea[id], label[for], select[id]').each(function() {
+            $(this).attr("class", "form-control");
+    	});
+    	});
+
+      function ocultar (id) {
+        $("#"+id).hide();
+      }
+		</script>
+
+		<script type="text/javascript">
+        $(function() {
+      	$("#formu").find('[id*=fecha]').each(function() {
+            $(this).datepicker({ format: 'dd/mm/yy'});
+    	});
+    	});
+		</script>
+	{% endblock %}
+  {% block head %} {% endblock %}
+</head>
+<body>
+	<div class="container">
+		<header id="cabecera">
+    {% load usuarios_extras %}
+        {% ifusergroup Administradores %}
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#noticias").show();
+                $("#eventos").show();
+                $("#usuarios").show();
+                $("#deportes").show();
+                $("#reportes").show();
+                $("#notis").show();
+            });
+        </script>
+    {% endifusergroup %}
+    {% ifusergroup Entrenadores %}
+      <script type="text/javascript">
+            $(document).ready(function(){
+                $("#noticias").show();
+                $("#eventos").show();
+                $("#deportes").show();
+                $("#notis").show();
+            });
+      </script>
+    {% endifusergroup %}
+    {% ifusergroup Deportistas %}
+      <script type="text/javascript">
+            $(document).ready(function(){
+                $("#notis").show();
+                $("#logros").show();
+                $("#acciones").show();
+            });
+      </script>
+    {% endifusergroup %}
+      <a href="/admin" class="btn btn-default navbar-btn" style="float: right;"><span class="glyphicon glyphicon-briefcase"></span> Modulo de Administrador</a>
+			<img src="{{STATIC_URL}}img/imgHeader.png" alt="Escudo" class="img-responsive"> 
+	<p></p>
+				<div class="btn-group btn-group-lg">
+              <a href="/home" class="btn btn-default"><span class="glyphicon glyphicon-home"></span> Inicio</a>
+  						<a href="/acercaDe" class="btn btn-default"><span class="glyphicon glyphicon-wrench"></span> Acerca de</a>
+              <a href="/acercaDe" class="btn btn-default"><span class="glyphicon glyphicon-earphone"></span> Contactenos</a>
+				</div>
+				<div class="btn-group" id="noticias" style="display: none;">
+    				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Noticias<span class="caret"></span>
+    				</button>
+    				<ul class="dropdown-menu">
+      					<li><a href="/noticia/create/">Crear Noticia</a></li>
+      					<li><a href="/noticia/list">Lista de Noticias</a></li>
+    				</ul>
+  			</div>
+  				<div class="btn-group" id="eventos" style="display: none;">
+    				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Eventos<span class="caret"></span>
+    				</button>
+    				<ul class="dropdown-menu">
+      					<li><a href="/evento/create">Crear Evento</a></li>
+      					<li><a href="/evento/list">Lista de Eventos</a></li>
+                <li><a href="/logro/create">Crear Logro</a></li>
+                <li><a href="/logro/list">Lista de Logros</a></li>
+                <li><a href="/lugar/create">Crear Lugar</a></li>
+                <li><a href="/lugar/list">Lista de Lugares</a></li>
+                <li><a href="/lugeven/create">Crear Lugar de Evento</a></li>
+                <li><a href="/lugeven/list">Lista de Lugares de Eventos</a></li>
+                <li><a href="/resultado/create">Crear Resultado</a></li>
+                <li><a href="/resultado/list">Lista de Resultados</a></li>
+    				</ul>
+  				</div>
+  				<div class="btn-group" id="deportes" style="display: none;">
+    				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Deportes<span class="caret"></span>
+    				</button>
+    				<ul class="dropdown-menu">
+      					<li><a href="/deporte/create">Crear Deporte</a></li>
+      					<li><a href="/deporte/list">Lista de Deportes</a></li>
+                <li><a href="/modalidad/create">Crear Modalidad</a></li>
+                <li><a href="/modalidad/list">Lista de Modalidades</a></li>
+                <li><a href="/depmod/create">Asignar Modalidad</a></li>
+                <li><a href="/depmod/list">Lista de Modalidades</a></li>
+    				</ul>
+  				</div>
+  				<div class="btn-group" id="usuarios" style="display: none;">
+    				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Usuarios<span class="caret"></span>
+    				</button>
+    				<ul class="dropdown-menu">
+      					<li><a href="/deportista/create">Crear Deportista</a></li>
+      					<li><a href="/entrenador/create">Crear Entrenador</a></li>
+      					<li><a href="/administrador/create">Crear Administrador</a></li>
+                <li><a href="/eps/create">Crear EPS</a></li>
+                <li><a href="/fechaentrenador/create">Crear Fecha de entrenador</a></li>
+                <li><a href="/eps/list">Lista de EPS</a></li>
+      					<li><a href="/persona/list">Lista de Usuarios</a></li>
+                <li><a href="/fechaentrenador/list">Lista de Fechas de entrenadores</a></li>
+    				</ul>
+  				</div>
+          <div class="btn-group" id="reportes" style="display: none;">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Reportes<span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="/deporte-report">Deportes</a></li>
+                <li><a href="/modalidad-report">Modalidades</a></li>
+                <li><a href="/depmod-report">Deportistas y sus Modalidades</a></li>
+                <li><a href="/evento-report">Eventos</a></li>
+                <li><a href="/logro-report">Logros</a></li>
+                <li><a href="/lugeven-report">Eventos y sus lugares</a></li>
+                <li><a href="/resultado-report">Resultados</a></li>
+            </ul>
+        </div>
+          <div class="btn-group" id="logros" style="display: none;">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Logros<span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="/misLogros">Mis logros</a></li>
+            </ul>
+        </div>
+        <div class="btn-group" id="notis" style="display: none;">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Noticias<span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="/verNoticias">Ver noticias</a></li>
+            </ul>
+        </div>
+        <div class="btn-group" id="acciones" style="display: none;">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Acciones<span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="/archivo/create">Añadir archivo</a></li>
+                <li><a href="/">Mis archivos</a></li>
+            </ul>
+        </div>
+				<a href="/logout" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-off"></span> Cerrar Sesion</a>
+
+	<p></p>
+				<div class="panel panel-default">
+  					<div class="panel-body">
+    					<div class="row">
+  							<div class="col-md-6">
+  								{% block BSCT_MAIN %} {% endblock %}
+  								{% block contenido %} {% endblock %}
+  							</div>
+						</div>
+						<div class="row">
+  							<div class="col-md-4">
+  								
+  							</div>
+						</div>
+  				</div>
+	</div>
+
+	<div class="panel-footer">Derechos Reservados &copy; 2014</div>
+	</div>
+</body>
+</html>

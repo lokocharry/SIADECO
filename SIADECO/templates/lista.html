@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block opciones %}
+	 
+{% endblock %}
+{% block contenido %}
+	<table class="table">
+		<tr>
+		{% for object in lista|slice:":1" %}
+			{% for field, value in object.fields.iteritems %}
+			{% if field != "id" %}
+        		<th>{{ field }}</th>
+        	{% endif %}	
+    		{% endfor %}
+		{% endfor %}
+		<th>Acciones</th>
+		</tr>
+		{% for object in lista %}
+			<tr>
+	    		{% for field, value in object.fields.iteritems %}
+    			{% if field != "id" %}
+        			<td>{{ value }}</td>
+        		{% endif %}
+    			{% endfor %}
+    			<td>
+					<a href="{{accionM}}/{{object.id}}" class="btn btn-primary">Modificar</a>
+					<a href="{{accionE}}/{{object.id}}" class="btn btn-primary">Eliminar</a>
+    			</td>
+    		</tr>
+    	{% endfor %}
+	</table>
+{% endblock %}
