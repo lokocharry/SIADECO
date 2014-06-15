@@ -1,19 +1,29 @@
 {% extends 'base.html' %}
 
 {% block contenido %}
-	<div class="bs-example">
-    	<ul class="nav nav-tabs">
-		{% for l in list %}
-			<li ><a data-toggle="tab" href="#{{l.id}}">{{ l.nombre_noticia }}</a></li>
-		{% endfor %}
+	<div>
+    	<ul class="nav nav-tabs" data-tabs="tabs">
+			{% for l in list %}
+				<li ><a data-toggle="tab" href="#{{l.id}}">{{ l.nombre_noticia }}</a></li>
+			{% endfor %}
 		</ul>
+
 		<div class="tab-content">
-		{% for l in list %}
-			<div id="{{l.id}}" class="tab-pane fade in active">
-				<h3>{{l.nombre_noticia}}</h3>
-				<p>{{l.descripcion_noticia}}</p>
-			</div>
-		{% endfor %}
+				<div id="{{l.id}}" class="tab-pane fade in active">
+					<h3>{{list.0.nombre_noticia}}</h3>
+					<p>{{list.0.descripcion_noticia}}</p>
+				</div>
+			{% for l in list %}
+				{% if forloop.counter > 0 %}
+				<div id="{{l.id}}" class="tab-pane fade">
+					<h3>{{l.nombre_noticia}}</h3>
+					<p>{{l.descripcion_noticia}}</p>
+				</div>
+				{% endif %}
+			{% endfor %}
 		</div>
+
     </div>
+
+    <a href="/verTodasNoticias" class="btn btn-primary">Ver todas las noticias</a>
 {% endblock %}

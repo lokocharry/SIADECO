@@ -12,6 +12,12 @@ class Noticia(BSCTModelMixin, models.Model):
 	entrenador=models.ForeignKey(Persona, related_name='Entrenador', limit_choices_to={'tipo_persona': 'E'})
 	administrador=models.ForeignKey(Persona, related_name='Administrador', limit_choices_to={'tipo_persona': 'A'})
 
+	def entrenador_detail(self):
+		return u'%s' % (self.entrenador)
+
+	def administrador_detail(self):
+		return u'%s' % (self.administrador)
+
 	def __unicode__(self):
 		return self.nombre_noticia
 

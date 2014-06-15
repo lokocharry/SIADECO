@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+	<div>
+    	<div >
+			<div id="{{l.id}}">
+				<h3>{{noticia.nombre_noticia}}</h3>
+				<p>{{noticia.descripcion_noticia}}</p>
+			</div>
+		</div>
+    </div>
+    <a href="/verTodasNoticias"></a>
+
+    <a href="javascript:history.back()" class="btn btn-default">Atras</a>
+{% endblock %}

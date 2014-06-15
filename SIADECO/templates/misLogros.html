@@ -5,13 +5,22 @@
 	 
 {% endblock %}
 {% block contenido %}
-  <div id="chart">
-    {{ chart.as_html }}
-  </div>
-	{% for l in list %}
-		<div class="panel panel-default">
+
+<h2>{{ nombre }}</h2>
+
+  <ul class="nav nav-tabs" data-tabs="tabs">
+        <li ><a data-toggle="tab" href="#resultados">Resultados</a></li>
+        <li ><a data-toggle="tab" href="#even">Eventos</a></li>
+        <li ><a data-toggle="tab" href="#medallas">Medallas</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="resultados" class="tab-pane fade in active">
+      {{ chart.as_html }}
+      {% for l in list %}
+      <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">{{ l.lugar_evento }}</h3>
+              <h3 class="panel-title">{{ l.lugar_evento }} ({{ l.lugar_evento.evento.tipo_evento }})</h3>
             </div>
             <div class="panel-body">
               Logro: {{ l.logro }}
@@ -20,6 +29,18 @@
               <br>
               Resultado: {{ l.resultado }}
             </div>
-        </div>
-	{% endfor %}
+      </div>
+      {% endfor %}
+    </div>
+
+    <div id="even" class="tab-pane fade">
+      {{ chart2.as_html }}
+    </div>
+
+    <div id="medallas" class="tab-pane fade">
+      {{ chart3.as_html }}
+    </div>
+  </div>   
+  
+  <a href="javascript:history.back()" class="btn btn-default">Atras</a>
 {% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block head %}
+{% endblock %}
+{% block opciones %}
+	 
+{% endblock %}
+{% block contenido %}
+  <div id="chart">
+    {{ chart.as_html }}
+  </div>
+	{% for l in list %}
+		<div class="panel panel-default">
+            <div class="panel-body">
+              Archivo: {{ l.archivo }}
+              <br>
+              Descripción: {{ l.descripcion }}
+            </div>
+     </div>
+	{% endfor %}
+{% endblock %}

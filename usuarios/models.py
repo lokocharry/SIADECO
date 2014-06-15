@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from deportes.models import Modalidad
 from django.core.urlresolvers import reverse
 from bsct.models import BSCTModelMixin
+from usuarios.myUserMiddelware import get_request
 
 # Create your models here.
 
@@ -30,6 +31,7 @@ class Persona(BSCTModelMixin, models.Model):
 		('L', 'L'),
 		('X', 'X'),
 	)
+
 	talla_ropa=models.CharField(max_length=20, choices=TALLA_ROPA)
 	TALLA_CALZADO=(
 		('25', '25'),
@@ -101,6 +103,9 @@ class Persona(BSCTModelMixin, models.Model):
 	def tipo_persona_detail( self ):
 		return '%s' % ( self.tipo_persona )
 
+	def modalidad_detail( self ):
+		return '%s' % ( self.modalidad )
+
 	def __unicode__(self):
 		return u'%s %s (%s)' % (self.nombre, self.apellido, self.tipo_persona)
 
@@ -134,15 +139,17 @@ class FechaEntrenador(BSCTModelMixin, models.Model):
 		verbose_name_plural = "Fechas entrenador"
 
 class Archivo(BSCTModelMixin, models.Model):
-	persona=models.ForeignKey(Persona)
+	persona=models.ForeignKey(Persona, limit_choices_to={'tipo_persona': 'D'})
 	descripcion=models.TextField()
 	archivo=models.FileField(upload_to='files', verbose_name='Archivo')
 
-	def save(self):
-		print self
+	def save(self, *args, **kwargs):
+		self.persona=Persona.objects.get(usuario=get_request().user)
+		super(Archivo, self).save(*args, **kwargs)
+
 
 	def persona_detail( self ):
-		return '%s' % ( self.persona )
+		return u'%s' % ( self.persona )
 
 	def __unicode__(self):
 		return '%s %s' % (self.persona, self.archivo)

@@ -23,13 +23,13 @@
             $(this).attr("class", "form-control");
     	});
     	});
-
-      function ocultar (id) {
-        $("#"+id).hide();
-      }
 		</script>
 
 		<script type="text/javascript">
+      $(document).ready(function(){
+        $("#id_persona").hide();
+        $('label[for="id_persona"]').hide();
+      });
         $(function() {
       	$("#formu").find('[id*=fecha]').each(function() {
             $(this).datepicker({ format: 'dd/mm/yy'});
@@ -80,7 +80,6 @@
 				<div class="btn-group btn-group-lg">
               <a href="/home" class="btn btn-default"><span class="glyphicon glyphicon-home"></span> Inicio</a>
   						<a href="/acercaDe" class="btn btn-default"><span class="glyphicon glyphicon-wrench"></span> Acerca de</a>
-              <a href="/acercaDe" class="btn btn-default"><span class="glyphicon glyphicon-earphone"></span> Contactenos</a>
 				</div>
 				<div class="btn-group" id="noticias" style="display: none;">
     				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Noticias<span class="caret"></span>
@@ -104,6 +103,7 @@
                 <li><a href="/lugeven/list">Lista de Lugares de Eventos</a></li>
                 <li><a href="/resultado/create">Crear Resultado</a></li>
                 <li><a href="/resultado/list">Lista de Resultados</a></li>
+                <li><a href="/logsdeps">Logros por deportista</a></li>
     				</ul>
   				</div>
   				<div class="btn-group" id="deportes" style="display: none;">
@@ -115,7 +115,7 @@
                 <li><a href="/modalidad/create">Crear Modalidad</a></li>
                 <li><a href="/modalidad/list">Lista de Modalidades</a></li>
                 <li><a href="/depmod/create">Asignar Modalidad</a></li>
-                <li><a href="/depmod/list">Lista de Modalidades</a></li>
+                <li><a href="/depmod/list">Lista de Modalidades de deportistas</a></li>
     				</ul>
   				</div>
   				<div class="btn-group" id="usuarios" style="display: none;">
@@ -132,7 +132,7 @@
                 <li><a href="/fechaentrenador/list">Lista de Fechas de entrenadores</a></li>
     				</ul>
   				</div>
-          <div class="btn-group" id="reportes" style="display: none;">
+          <!--<div class="btn-group" id="reportes" style="display: none;">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Reportes<span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
@@ -144,7 +144,7 @@
                 <li><a href="/lugeven-report">Eventos y sus lugares</a></li>
                 <li><a href="/resultado-report">Resultados</a></li>
             </ul>
-        </div>
+        </div>-->
           <div class="btn-group" id="logros" style="display: none;">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Logros<span class="caret"></span>
             </button>
@@ -153,7 +153,7 @@
             </ul>
         </div>
         <div class="btn-group" id="notis" style="display: none;">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Noticias<span class="caret"></span>
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Ver Noticias<span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
                 <li><a href="/verNoticias">Ver noticias</a></li>
@@ -164,8 +164,11 @@
             </button>
             <ul class="dropdown-menu">
                 <li><a href="/archivo/create">Añadir archivo</a></li>
-                <li><a href="/">Mis archivos</a></li>
-            </ul>
+                <li><a href="/misArchivos">Mis archivos</a></li>
+            </ul><style type="text/css">
+div.inline { float:left; }
+.clearBoth { clear:both; }
+</style>
         </div>
 				<a href="/logout" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-off"></span> Cerrar Sesion</a>
 
@@ -173,7 +176,7 @@
 				<div class="panel panel-default">
   					<div class="panel-body">
     					<div class="row">
-  							<div class="col-md-6">
+  							<div class="col-md-10">
   								{% block BSCT_MAIN %} {% endblock %}
   								{% block contenido %} {% endblock %}
   							</div>

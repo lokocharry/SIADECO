@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+	<div class="bs-example">
+		{% for l in list %}
+			<a href="/detalleslogrosDeportista/{{l.id}}">{{ l.nombre }} {{l.apellido}}</a>
+			<br>
+		{% endfor %}
+    </div>
+    <br>
+    <a href="javascript:history.back()" class="btn btn-default">Atras</a>
+{% endblock %}

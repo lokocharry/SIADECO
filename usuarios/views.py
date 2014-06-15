@@ -6,6 +6,7 @@ from django.template import RequestContext
 from django.contrib.auth import login, authenticate, logout
 from django.http import HttpResponse, HttpResponseRedirect
 from usuarios.forms import *
+from usuarios.models import *
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.decorators import login_required
 
@@ -115,3 +116,8 @@ def nuevo_administrador(request):
 	else:
 		form=AdministradorForm()
 	return render_to_response('crearUsuario.html',{'form':form, 'accion':'create'}, context_instance=RequestContext(request))
+
+def mis_archivos(request):
+	persona = Persona.objects.get(usuario=request.user)
+	lst=Archivo.objects.filter(persona=persona)
+	return render_to_response('misArchivos.html',{'list':lst}, context_instance=RequestContext(request))
